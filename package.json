@@ -1,0 +1,23 @@
+{
+  "name": "thirdparty-script-downloader",
+  "version": "1.0.0",
+  "description": "Helper script to manage a registry of scripts to download from configured URLs to update local copies. Helpful when using things from thirdparty vendors or providers not versioned or provided via npm.",
+  "main": "downloadThirdpartyLib.js",
+  "author": "Dennis Sterzenbach <dennis.sterzenbach@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dennissterzenbach/thirdparty-script-downloader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dennissterzenbach/thirdparty-script-downloader/issues"
+  },
+  "homepage": "https://github.com/dennissterzenbach/thirdparty-script-downloader",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "fs": "0.0.2",
+    "path": "^0.12.7",
+    "request": "^2.81.0"
+  }
+}

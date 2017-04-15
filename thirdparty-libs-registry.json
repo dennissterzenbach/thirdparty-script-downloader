@@ -1,0 +1,14 @@
+{
+    "jQuery": {
+        "cdn": {
+            "url": "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js",
+            "file": "jQuery.min.js"
+        }
+    },
+    "libtest123": {
+        "prod": {
+            "url": "http://www.somewhere.de/over/the/rainbow.js",
+            "file": "rainbow.js"
+        }
+    }
+}
