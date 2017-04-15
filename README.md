@@ -1,37 +1,8 @@
-## Welcome to GitHub Pages
+## thirdparty-script-downloader
 
-You can use the [editor on GitHub](https://github.com/dennissterzenbach/thirdparty-script-downloader/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+This is a simple yet powerful helper script to manage a registry of libraries and their respective environment/system contexts with url and local filenames to download a new version of a thirdparty library from its origin easily without having to remember the urls. The script maintains the registry, you can add as many ressources and environments as you like. Each consists of a url and a local filename to store the content downloaded from that url to upon update.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+See the commandline output for more info:
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/dennissterzenbach/thirdparty-script-downloader/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+node downloadThirdpartyLib.js --help
+```
