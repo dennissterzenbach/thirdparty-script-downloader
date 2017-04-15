@@ -1,7 +1,7 @@
 {
   "name": "thirdparty-script-downloader",
   "version": "1.0.0",
-  "description": "Helper script to manage a registry of scripts to download from configured URLs to update local copies. Helpful when using things from thirdparty vendors or providers not versioned or provided via npm.",
+  "description": "Helper script to manage a registry of resources to download from configured URLs to update local copies. Helpful when using things from thirdparty vendors or providers not versioned or provided via npm.",
   "main": "downloadThirdpartyLib.js",
   "author": "Dennis Sterzenbach <dennis.sterzenbach@gmail.com>",
   "repository": {
