@@ -1,0 +1,4 @@
+{
+    "basePath": "./",
+    "libraryRegistry": "./thirdparty-libs-registry.json"
+}

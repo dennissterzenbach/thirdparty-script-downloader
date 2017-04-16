@@ -16,11 +16,10 @@ var fs = require('fs');
 chalk.enabled = true;
 chalk.supportsColor = true;
 
+var libConfigFileName = './thirdparty-libs-config.json';
+
 // GENERAL CONFIG
-var config = {
-    basePath: './test/',
-    libraryRegistry: './thirdparty-libs-registry.json'
-};
+var config = require(libConfigFileName);
 
 // GLOBAL VARS
 var systemContext;
@@ -64,6 +63,11 @@ program
   .command('remove-lib-context <libName> <systemContext>')
   .description('remove the library\'s systemContext')
   .action(programRemoveLibContext);
+
+program
+  .command('set-config <setting> <value>')
+  .description('set the settings\' value')
+  .action(programSetConfigValue);
 
 program
   .parse(process.argv);
@@ -137,6 +141,40 @@ function programRemoveLibContext(libName, env) {
     libRegistry.removeLibContext(libName, env);
 
     console.log(chalk.green('done'));
+}
+
+function programSetConfigValue(setting, value) {
+  var validKnownSettings = {
+    basePath: true,
+    test: true
+  };
+
+  if (!setting) {
+    return;
+  }
+
+  if (!validKnownSettings.hasOwnProperty(setting)) {
+    return;
+  }
+
+  if (typeof value === 'undefined' || value === null || typeof value === 'object') {
+    return;
+  }
+
+  if (setting === 'basePath' && value.substr(value.length - 1) !== '/') {
+    value += '/';
+  }
+
+  config[setting] = value;
+
+  console.log('CONFIG');
+  console.log(config);
+
+  updateConfig(libConfigFileName, config);
+
+  function updateConfig(fileName, config) {
+    fs.writeFileSync(fileName, JSON.stringify(config, ' ', 4));
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
