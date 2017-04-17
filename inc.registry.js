@@ -6,8 +6,10 @@
  */
 var fs = require('fs');
 
-function DownloadThirdpartyLibRegistry(libraryRegistryFilename) {
-    this.libraryRegistryFilename = libraryRegistryFilename;
+function DownloadThirdpartyLibRegistry(configManager) {
+    this._configManager = configManager;
+
+    this.libraryRegistryFilename = this._configManager.getConfiguration().libraryRegistry;
 }
 
 module.exports = DownloadThirdpartyLibRegistry;

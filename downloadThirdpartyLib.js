@@ -18,19 +18,18 @@ chalk.supportsColor = true;
 
 var libConfigFileName = './thirdparty-libs-config.json';
 
-// GENERAL CONFIG
-var config = require(libConfigFileName);
-
 // GLOBAL VARS
 var systemContext;
 var libName;
 
 banner();
 
+var DownloadThirdpartyLibConfig = require('./inc.config.js');
 var DownloadThirdPartyLibUpdater = require('./inc.update.js');
 var DownloadThirdpartyLibRegistry = require('./inc.registry.js');
 
-var libRegistry = new DownloadThirdpartyLibRegistry(config.libraryRegistry);
+var libConfig = new DownloadThirdpartyLibConfig(libConfigFileName);
+var libRegistry = new DownloadThirdpartyLibRegistry(libConfig);
 
 ///////////////////////////////////////////////////////////////////////////////
 ///// THE PROGRAM
@@ -65,9 +64,14 @@ program
   .action(programRemoveLibContext);
 
 program
-  .command('set-config <setting> <value>')
+  .command('config-set <setting> <value>')
   .description('set the settings\' value')
   .action(programSetConfigValue);
+
+program
+  .command('config-show')
+  .description('show currently configured settings')
+  .action(programShowConfig);
 
 program
   .parse(process.argv);
@@ -81,9 +85,9 @@ function programRunUpdate(parLibName, parSystemContext) {
     console.log('cmd:', chalk.inverse.underline('Update library ' + libName + ' @ ' + systemContext));
     console.info('RUNNING UPDATE FOR', parLibName);
 
-    var registry = loadRegistry(config.libraryRegistry);
+    var registry = libRegistry.loadRegistry();
     var updater = new DownloadThirdPartyLibUpdater();
-    updater.downloadAndPublishFile(config.basePath, registry[libName][systemContext], libName, generateMetaData);
+    updater.downloadAndPublishFile(libConfig.getConfiguration().basePath, registry[libName][systemContext], libName, generateMetaData);
 }
 
 function programShowAllRegisteredLibraries() {
@@ -143,37 +147,17 @@ function programRemoveLibContext(libName, env) {
     console.log(chalk.green('done'));
 }
 
-function programSetConfigValue(setting, value) {
-  var validKnownSettings = {
-    basePath: true,
-    test: true
-  };
+///////////////////////////////////////////////////////////////////////////////
+// CONFIG
 
-  if (!setting) {
-    return;
-  }
-
-  if (!validKnownSettings.hasOwnProperty(setting)) {
-    return;
-  }
-
-  if (typeof value === 'undefined' || value === null || typeof value === 'object') {
-    return;
-  }
-
-  if (setting === 'basePath' && value.substr(value.length - 1) !== '/') {
-    value += '/';
-  }
-
-  config[setting] = value;
-
+function programShowConfig() {
   console.log('CONFIG');
-  console.log(config);
+  console.log(libConfig.getConfiguration());
+}
 
-  updateConfig(libConfigFileName, config);
-
-  function updateConfig(fileName, config) {
-    fs.writeFileSync(fileName, JSON.stringify(config, ' ', 4));
+function programSetConfigValue(setting, value) {
+  if (libConfig.setValue(setting, value)) {
+    programShowConfig();
   }
 }
 
