@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Helper script to download a new version of a thirdparty library from origin.
  * You can download a copy from for example separate "dev"elopment or 
