@@ -19,5 +19,15 @@
     "fs": "0.0.2",
     "path": "^0.12.7",
     "request": "^2.81.0"
-  }
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "downloadThirdpartyLib.js",
+    "inc.config.js",
+    "inc.registry.js",
+    "inc.update.js",
+    "thirdparty-libs-config.json",
+    "thirdparty-libs-registry.json"
+  ]
 }
